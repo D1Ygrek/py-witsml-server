@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+        xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+        xmlns:tns="http://www.witsml.org/wsdl/120" 
+        xmlns:types="http://www.witsml.org/wsdl/120/encodedTypes" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+        <q1:WMLS_GetVersion xmlns:q1="http://www.witsml.org/message/120" />
+    </soap:Body>
+</soap:Envelope>
