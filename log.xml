@@ -1,11 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
-        xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
-        xmlns:tns="http://www.witsml.org/wsdl/120" 
-        xmlns:types="http://www.witsml.org/wsdl/120/encodedTypes" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" 
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+    xmlns:tns="http://www.witsml.org/wsdl/120" 
+    xmlns:types="http://www.witsml.org/wsdl/120/encodedTypes" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <soap:Body soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
         <q1:WMLS_GetVersion xmlns:q1="http://www.witsml.org/message/120" />
     </soap:Body>
 </soap:Envelope>
+
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.witsml.org/wsdl/120" xmlns:types="http://www.witsml.org/wsdl/120/encodedTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Body soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+        <q1:WMLS_GetCap xmlns:q1="http://www.witsml.org/message/120">
+            <OptionsIn xsi:type="xsd:string">dataVersion=1.4.1.1</OptionsIn>
+        </q1:WMLS_GetCap>
+    </soap:Body>
+</soap:Envelope>
+
+
+<capServers xmlns="http://www.witsml.org/api/141" version="1.4.1">
+    <capServer apiVers="1.4.1">
+        <contact>
+            <name>server contact name</name>
+            <email>serverAdministrator@serverCompany.com</email>
+            <phone>281-135-7924</phone>
+        </contact>
+        <description>server description</description>
+        <name>John Smith</name>
+        <vendor>INSITE server #1</vendor>
+        <version>1.1.0.120</version>
+        <schemaVersion>1.4.1.1</schemaVersion>
+        <changeDetectionPeriod>36</changeDetectionPeriod>
+        <growingTimeoutPeriod dataObject="log">60</growingTimeoutPeriod>
+        <growingTimeoutPeriod dataObject="mudLog">60</growingTimeoutPeriod>
+        <cascadedDelete>false</cascadedDelete>
+        <compressionMethod>gzip</compressionMethod>
+        <profileName>My Company Log Standard</profileName>
+        <function name="WMLS_GetFromStore">
+            <dataObject>well</dataObject>
+            <dataObject>wellbore</dataObject>
+            <dataObject maxDataNodes="1000" maxDataPoints="10000">log</dataObject>
+            <dataObject maxDataNodes="200">mudLog</dataObject>
+        </function>
+        <function name="WMLS_AddToStore">
+            <dataObject maxDataNodes="500" maxDataPoints="5000">log</dataObject>
+            <dataObject maxDataNodes="200">mudLog</dataObject>
+        </function>
+        <function name="WMLS_UpdateInStore">
+            <dataObject maxDataNodes="500" maxDataPoints="5000">log</dataObject>
+            <dataObject maxDataNodes="200">mudLog</dataObject>
+        </function>
+        <function name="WMLS_GetBaseMsg"/>
+    </capServer>
+</capServers>

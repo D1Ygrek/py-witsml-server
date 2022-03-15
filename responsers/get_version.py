@@ -1,3 +1,7 @@
+import xml.etree.ElementTree as ET
+
+from .create_base_message import provide_ribs, create_full
+
 def return_version(params):
     #print(params)
     data = """<?xml version="1.0" encoding="utf-8"?>
@@ -14,4 +18,8 @@ def return_version(params):
                     </soap:Body>
                 </soap:Envelope>
     """
-    return data
+    root, bod = provide_ribs()
+    gvr = ET.SubElement(bod, 'WMLS_GetVersionResponse')
+    res = ET.SubElement(gvr, 'Result')
+    res.text = '1.4.1.1'
+    return create_full(root)

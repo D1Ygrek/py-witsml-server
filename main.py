@@ -7,6 +7,8 @@ from parsers.request_parser import what_do_you_need
 
 from responsers.get_version import return_version
 from responsers.get_cap import return_cap
+from responsers.get_base_msg import return_base_msg
+from responsers.get_from_store import return_from_store
 
 app = FastAPI()
 
@@ -41,14 +43,16 @@ async def connect_client(websocket: WebSocket):
 async def return_entry(request: Request, credentials: HTTPBasicCredentials = Depends(security)):
     responses = {
         'GetVersion': return_version,
-        'GetCap': return_cap
+        'GetCap': return_cap,
+        'GetBaseMsg': return_base_msg,
+        'GetFromStore': return_from_store
     }
     ask = await request.body()
-    f_name = what_do_you_need(ask.decode('utf-8'))
+    f_name,params = what_do_you_need(ask.decode('utf-8'))
     print(f'<----{f_name}---->')
     #TODO: print(credentials.username, credentials.password)
 
 
 
-    data = responses.get(f_name)('f')
-    return Response(content=data, media_type="text/xml")
+    data = responses.get(f_name)(params)
+    return Response(content=str(data), media_type="text/xml")
